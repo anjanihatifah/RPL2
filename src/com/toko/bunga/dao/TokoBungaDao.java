@@ -4,7 +4,7 @@ import com.toko.bunga.model.TokoBunga;
 import java.util.List;
 
 public interface TokoBungaDao {
-    public void save(TokoBunga tokobunga);
+    public String save(TokoBunga tokobunga);
     public void update(TokoBunga tokobunga);
     public void delete(TokoBunga tokobunga);
     //public TokoBunga get(String kd_bunga);

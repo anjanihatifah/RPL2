@@ -1,11 +1,16 @@
 package com.toko.bunga.dao;
 
 import com.toko.bunga.model.TokoBunga;
+import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+@Repository
+@Transactional
 public class TokoBungaImpl implements TokoBungaDao {
     @Autowired
     private SessionFactory sessionFactory;
@@ -16,8 +21,10 @@ public class TokoBungaImpl implements TokoBungaDao {
     
 
     @Override
-    public void save(TokoBunga tokobunga) {
-        Session session = sessionFactory.openSession();
+    public String save(TokoBunga tokobunga) {
+        Serializable res = sessionFactory.getCurrentSession().save(tokobunga);
+        return String.valueOf(res);
+//        Session session = sessionFactory.openSession();
 //        try{
 //            session.beginTransaction();
 //            session.save(tokobunga);
@@ -34,7 +41,8 @@ public class TokoBungaImpl implements TokoBungaDao {
 
     @Override
     public void update(TokoBunga tokobunga) {
-        Session session = sessionFactory.openSession();
+        sessionFactory.getCurrentSession().update(tokobunga);
+//        Session session = sessionFactory.openSession();
 //        try{
 //            session.beginTransaction();
 //            session.update(tokobunga);
@@ -51,7 +59,8 @@ public class TokoBungaImpl implements TokoBungaDao {
 
     @Override
     public void delete(TokoBunga tokobunga) {
-        Session session = sessionFactory.openSession();
+        sessionFactory.getCurrentSession().delete(tokobunga);
+//        Session session = sessionFactory.openSession();
 //        try{
 //            session.beginTransaction();
 //            session.delete(tokobunga);
